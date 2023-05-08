@@ -2,8 +2,8 @@ version: '3.2'
 services:
   legacywebshop:
     build:
-      context: ..
-      dockerfile: docker/Dockerfile
+      context: monolith/docker
+      dockerfile: Dockerfile
     ports:
       - "8888:8080"
     networks:
@@ -13,8 +13,8 @@ services:
 
   web-shop-db-image:
     build:
-      context: ..
-      dockerfile: docker/DockerfileMySQL
+      context: monolith/docker
+      dockerfile: DockerfileMySQL
     volumes:
       - "./.data/db:/var/lib/mysql"
     environment:
@@ -28,6 +28,32 @@ services:
         local_dev_net:
             aliases:
                 - web-shop-db-image
+
+  categories:
+    container_name: categories
+    build:
+      context: categories
+      dockerfile: Dockerfile
+    image: vsys:categories
+    ports:
+      - "8082:8082"
+    networks:
+      local_dev_net:
+        aliases:
+          - categories-service
+
+  products:
+    container_name: products
+    build:
+      context: products
+      dockerfile: Dockerfile
+    image: vsys:products
+    ports:
+      - "8081:8081"
+    networks:
+      local_dev_net:
+        aliases:
+          - products-service
 
 networks:
   local_dev_net:
