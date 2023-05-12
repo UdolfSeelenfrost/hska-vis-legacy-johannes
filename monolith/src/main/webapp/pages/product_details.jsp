@@ -25,6 +25,7 @@
 						<s:if test="#session.webshop_user.role.level==0">   <!-- if admin -->
 							<li><a href="./InitCategorySiteAction.action?pageToGoTo=p"><s:text name="product.add" /></a></li>
 							<li><a href="./InitCategorySiteAction.action?pageToGoTo=c"><s:text name="categories.edit" /></a></li>
+							<li><a href="./TestAction.action"><s:text name="Test" /></a></li>
 						</s:if>
 					</ul>
 				    <div>

@@ -7,9 +7,9 @@ services:
     ports:
       - "8888:8080"
     networks:
-      local_dev_net:
-          aliases:
-              - legacywebshop
+        local_dev_net:
+            aliases:
+               - legacywebshop
 
   web-shop-db-image:
     build:
@@ -31,29 +31,28 @@ services:
   categories:
     container_name: categories
     build:
-      context: categories/categories
+      context: categories
       dockerfile: Dockerfile
     image: vsys:categories
     ports:
       - "8082:8082"
     networks:
-      local_dev_net:
-        aliases:
-          - categories-service
+        local_dev_net:
+            aliases:
+               - categories-service
 
-  products:
-    container_name: products
+  cSharpTest:
+    container_name: cSharpTest
     build:
-      context: products/products
+      context: products_csharp/dotnet-6-crud-api
       dockerfile: Dockerfile
-    image: vsys:products
+    image: test:products
     ports:
-      - "8081:8081"
+      - "4000:4000"
     networks:
-      local_dev_net:
-        aliases:
-          - products-service
-
+        local_dev_net:
+            aliases:
+               - products-service
 networks:
   local_dev_net:
     driver: bridge
