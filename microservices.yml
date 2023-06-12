@@ -3,8 +3,8 @@ kind: ConfigMap
 metadata:
   name: mysql-config
 data:
-  webshop-db-user: webshopuser
-  webshop-database: webshop
+  webshop-db-user: "webshopuser"
+  webshop-database: "webshop"
 ---
 apiVersion: v1
 kind: Secret
@@ -114,7 +114,7 @@ metadata:
     app: categories
   name: categories
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: categories
@@ -129,7 +129,8 @@ spec:
         app: categories
     spec:
       containers:
-        - image: leodocking/categories
+        - image: categories:latest
+          imagePullPolicy: IfNotPresent
           name: categories
           ports:
             - containerPort: 8082

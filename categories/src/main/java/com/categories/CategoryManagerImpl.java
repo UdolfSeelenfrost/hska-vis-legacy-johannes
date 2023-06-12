@@ -24,6 +24,11 @@ public class CategoryManagerImpl implements CategoryManager{
 		return categoryDAO.getObjectList();
 	}
 
+	@GetMapping("/whatAmI")
+	public String getWhatAmI() {
+		return System.getenv("HOSTNAME");
+	}
+
 	@GetMapping("/id/{categoryID}")
 	public Category getCategory(@PathVariable int categoryID) {
 		return categoryDAO.getObjectById(categoryID);
