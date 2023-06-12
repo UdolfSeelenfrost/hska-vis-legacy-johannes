@@ -9,7 +9,7 @@ the masters course 'Distributed Information Systems' at the University of Applie
 - [Prerequisites](#prerequisites)
 - [Usage](#usage)
     - [Quick Start](#quick-start)
-    - [Built it on your own](#built-it-on-your-own)
+    - [Build it on your own](#build-it-on-your-own)
 - [Database cleanup](#database-cleanup)
 - [License](#license)
 
@@ -31,7 +31,7 @@ $ docker-compose logs -tf
 $ docker-compose down
 ```
 
-### <a name="built-it-on-your-own"></a>Built it on your own
+### <a name="built-it-on-your-own"></a>Build it on your own
 - Run `docker-compose -f docker-compose-local.yml up -d` which will
     - It builds the web app `war` in a staged build, packs it into a docker tomcat8 container,
     and sets the user `tomcat` with password `admin` for the Management Console at http://localhost:8888/
@@ -39,6 +39,18 @@ $ docker-compose down
     - Sets up both containers and make the legacy webshop available under http://localhost:8888/EShop-1.0.0
 - Follow the logs via `docker-compose -f docker-compose-local.yml logs -tf`
 - To shutdown the containers run `docker-compose -f docker-compose-local.yml down`
+
+### <a name="istio"></a>Istio Setup
+
+* Install [Istio](https://istio.io/latest/docs/setup/getting-started/)
+* Start Docker Desktop, and start minikube with `minikube start`
+* Make sure that the Istio containers are automatically injected when the pods are started: `kubectl label namespace default istio-injection=enabled`
+* Install the Istio addons (Kiali, Prometheus, Grafana). In the subdirectory `istio-addons`. Apply them with `kubectl apply -f  istio-addons`.
+* Start the Webshop application:
+* - Apply the microservice.yml file, which creates kubectl apply -f microservices.yml
+* - Check that the pods are running and available: `kubectl get pods`
+* - Port forward to access the Webshop from your local browser: `kubectl port-forward service/legacywebshop 8888:8888`
+* - Open your browser `http://localhost:8888/EShop-1.0.0/` to access the webshop. Use admin/admin to log in.
 
 ## <a name="database-cleanup"></a>Database Cleanup
 If you change the user and password of the MySQL database, you should run
