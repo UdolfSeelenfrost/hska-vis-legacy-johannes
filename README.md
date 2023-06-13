@@ -42,13 +42,13 @@ $ docker-compose down
 
 ### <a name="istio"></a>Istio Setup
 
-* Install [Istio](https://istio.io/latest/docs/setup/getting-started/)
 * Start Docker Desktop, and start minikube with `minikube start`
+* Install [Istio](https://istio.io/latest/docs/setup/getting-started/)
 * Make sure that the Istio containers are automatically injected when the pods are started: `kubectl label namespace default istio-injection=enabled`
 * Install the Istio addons (Kiali, Prometheus, Grafana). In the subdirectory `istio-addons`. Apply them with `kubectl apply -f  istio-addons`.
 * Start the Webshop application:
-* - Apply the microservice.yml file, which creates kubectl apply -f microservices.yml
-* - Check that the pods are running and available: `kubectl get pods`
+* - Apply the microservice.yml file, which creates deployments and services: `kubectl apply -f microservices.yml`
+* - Check that the pods are running and available (Ready 2/2): `kubectl get pods` 
 * - Port forward to access the Webshop from your local browser: `kubectl port-forward service/legacywebshop 8888:8888`
 * - Open your browser `http://localhost:8888/EShop-1.0.0/` to access the webshop. Use admin/admin to log in.
 
