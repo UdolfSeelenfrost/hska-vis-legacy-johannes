@@ -10,6 +10,7 @@ the masters course 'Distributed Information Systems' at the University of Applie
 - [Usage](#usage)
     - [Quick Start](#quick-start)
     - [Build it on your own](#build-it-on-your-own)
+    - [Istio Setup](#istio)
 - [Database cleanup](#database-cleanup)
 - [License](#license)
 
