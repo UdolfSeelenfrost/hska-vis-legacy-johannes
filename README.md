@@ -53,6 +53,10 @@ $ docker-compose down
 * - Port forward to access the Webshop from your local browser: `kubectl port-forward service/legacywebshop 8888:8888`
 * - Open your browser `http://localhost:8888/EShop-1.0.0/` to access the webshop. Use admin/admin to log in.
 
+## Util
+* Istio Dashboards are opened with `istioctl dashboard {serviceName}` e.g. "istioctl dashboard grafana"
++ Apache Proxy forward with `kubectl port-forward service/apache 8888:80`
++ Apache test requests are on url `http://localhost:8888/categories`
 ## <a name="database-cleanup"></a>Database Cleanup
 If you change the user and password of the MySQL database, you should run
 ```bash
