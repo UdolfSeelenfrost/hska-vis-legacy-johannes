@@ -111,7 +111,8 @@ spec:
         app: categories
     spec:
       containers:
-        - image: leodocking/categories
+        - image: categories:latest
+          imagePullPolicy: IfNotPresent
           name: categories
           ports:
             - containerPort: 8082
